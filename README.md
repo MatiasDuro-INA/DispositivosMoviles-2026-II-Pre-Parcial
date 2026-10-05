@@ -1,9 +1,5 @@
 # Pre-parcial — Cine Arrabal
 
-**Tiempo: 1 h 10 min.** Se puede consultar el apunte. No se puede consultar entre ustedes.
-
-La página fue hecha mirando un monitor y probada con un mouse. Tu trabajo es dejarla bien para el teléfono.
-
 - **No toques `index.html`.** Todo se arregla en `estilos.css`.
 - Los problemas puntuales están marcados en el CSS con su número, por ejemplo `/* [5] */`.
   Los puntos 1 a 4 no tienen marca: hay que recorrer la hoja entera.
