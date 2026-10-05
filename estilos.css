@@ -1,0 +1,300 @@
+/* ============================================================================
+   PRE-PARCIAL — Cine Arrabal                                 Tiempo: 1h 10min
+   ----------------------------------------------------------------------------
+   El HTML está terminado: NO lo toques. Todo se arregla en este archivo.
+   La página fue hecha mirando un monitor y probada con un mouse. Dejala bien
+   para el teléfono. Los problemas puntuales están marcados con su número: [5].
+
+   ── Variables ───────────────────────────────────────────────────────────────
+    1. COLORES. Hay siete colores en hex, casi todos repetidos. Creá una variable en
+       :root para cada uno (nombre según para qué se usa, no qué color es) y
+       reemplazalos todos por var().
+
+    2. SOMBRAS. Hay dos box-shadow repetidos. Pasalos a --sombra y
+       --sombra-alta.
+
+    3. FUENTES. Hay dos font-family repetidos. Pasalos a variables. Pista: con
+       una regla h1, h2, h3 { … } no hace falta repetirla en cada título.
+
+   ── Unidades ────────────────────────────────────────────────────────────────
+    4. PX → REM. font-size, padding, margin, gap y max-width pasan a rem
+       (para los espacios usá la escala --s-*). Bordes, radios y sombras
+       pueden quedar en px.
+
+    5. [5] a) El título mide 48px siempre: clamp() entre 2rem y 3.5rem, con
+              el preferido en rem + vw.
+           b) height: 100vh en el hero corta el botón en el teléfono. Dos
+              arreglos en una línea, y con 60 alcanza.
+
+   ── Mobile first ────────────────────────────────────────────────────────────
+    6. [6] La media query está al revés (max-width, en px). El estilo base
+       tiene que ser el del teléfono (una columna, cabecera apilada) y la
+       media query, con min-width: 48rem, sólo SUMA.
+
+   ── Estados (clase 4) ───────────────────────────────────────────────────────
+    7. [7] a) Los :hover están sueltos: en el teléfono se quedan pegados.
+           b) Hay un :active que nunca se ve con el mouse. ¿Por qué?
+           c) transition: all. Nombrá sólo lo que cambia.
+
+    8. [8] a) outline: none deja sin anillo a quien navega con Tab. Usá la
+              pseudoclase correcta y un anillo de dos tonos
+              (--foco: #f2b632 y --foco-contra: #2b2118).
+           b) Con el foco en "Comprar", que se marque la tarjeta entera.
+
+    9. [9] Todo lo que se toca mide 44 (agregá --tocable: 44px): la marca,
+       los enlaces del menú y los botones. Ojo con height. El enlace del pie
+       está dentro de un párrafo: agrandale el área sin romper el renglón.
+
+   10. [10] Por posición, sin agregar clases al HTML:
+           a) El primer párrafo de cada sección es la intro (más grande y
+              gris). La regla existe pero no agarra nada. ¿Por qué?
+           b) Cebrá los horarios: las filas pares con el color de cebra.
+           c) La primera fila es la próxima función: negrita y border-left
+              de 4px color acento.
+           d) La última fila tiene doble línea abajo. Sacásela sólo a ella.
+
+   EXTRA (si terminás antes): la media query para quien pide menos
+   movimiento.
+
+   ── Cómo saber si está bien ─────────────────────────────────────────────────
+    · A 320px todo va en una columna y no hay scroll horizontal.
+    · Con Tab ves un anillo en todo; con click del mouse, no.
+    · Debajo de este comentario, "#" sólo aparece dentro de :root.
+   ========================================================================== */
+
+:root {
+    --s-1: 0.25rem;
+    --s-2: 0.5rem;
+    --s-3: 1rem;
+    --s-4: 1.5rem;
+    --s-5: 2rem;
+    --s-6: 3rem;
+
+    --radio: 12px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #fdf6ec;
+    color: #2b2118;
+    line-height: 1.6;
+}
+
+/* --- Cabecera --- */
+.cabecera {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 32px;
+    background: #ffffff;
+    border-bottom: 3px solid #b3261e;
+    box-shadow: 0 2px 6px rgba(43, 33, 24, 0.12);
+}
+
+.marca {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #b3261e;
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    gap: 8px;
+}
+
+/* [9] */
+.nav a {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding-inline: 16px;
+    border-radius: var(--radio);
+    color: #2b2118;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+/* [7] */
+.nav a:active {
+    background: #eadfce;
+}
+
+.nav a:hover {
+    background: #f6ecdd;
+}
+
+/* --- Hero --- */
+/* [5] */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    height: 100vh;
+    padding: 48px 16px;
+    text-align: center;
+    background: #b3261e;
+}
+
+/* [5] */
+.hero h1 {
+    margin: 0;
+    max-width: 18ch;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 48px;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+/* --- Botones --- */
+/* [9] */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 24px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #b3261e;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(43, 33, 24, 0.12);
+    transition: all 0.3s;
+}
+
+/* [7] */
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(43, 33, 24, 0.2);
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+/* [8] */
+a:focus {
+    outline: none;
+}
+
+.btn--rojo {
+    background: #b3261e;
+    color: #ffffff;
+}
+
+/* --- Secciones --- */
+.seccion {
+    max-width: 1024px;
+    margin-inline: auto;
+    padding: 48px 16px 16px;
+}
+
+.seccion h2 {
+    margin: 0 0 16px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.seccion > p {
+    margin: 0 0 16px;
+}
+
+/* [10] */
+.seccion > p:first-child {
+    font-size: 18px;
+    color: #6b5b4b;
+}
+
+/* --- Películas --- */
+/* [6] */
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.peli {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px 16px;
+    background: #ffffff;
+    border: 1px solid #eadfce;
+    border-radius: var(--radio);
+    box-shadow: 0 2px 6px rgba(43, 33, 24, 0.12);
+}
+
+.peli h3 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+.peli p {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #6b5b4b;
+}
+
+/* --- Horarios --- */
+.horarios {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: #ffffff;
+    border: 1px solid #eadfce;
+    border-radius: var(--radio);
+    box-shadow: 0 2px 6px rgba(43, 33, 24, 0.12);
+    overflow: hidden;
+}
+
+/* [10] */
+.horarios li {
+    padding: 16px;
+    border-bottom: 1px solid #eadfce;
+}
+
+/* --- Pie --- */
+.pie {
+    margin-top: 48px;
+    padding: 24px 16px;
+    text-align: center;
+    background: #2b2118;
+    color: #fdf6ec;
+}
+
+.pie p {
+    margin: 0;
+}
+
+/* [9] */
+.pie a {
+    color: #fdf6ec;
+}
+
+/* [6] */
+@media (max-width: 768px) {
+    .cabecera {
+        flex-direction: column;
+        padding-inline: 16px;
+    }
+
+    .grilla {
+        grid-template-columns: 1fr;
+    }
+}
